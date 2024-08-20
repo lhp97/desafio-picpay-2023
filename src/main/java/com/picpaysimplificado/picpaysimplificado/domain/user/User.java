@@ -1,10 +1,8 @@
 package com.picpaysimplificado.picpaysimplificado.domain.user;
 
+import com.picpaysimplificado.picpaysimplificado.dto.UserDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -13,6 +11,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @AllArgsConstructor //Cria o construtor que recebe todos os parametros da classe
+@NoArgsConstructor
 @EqualsAndHashCode()
 public class User {
 
@@ -37,4 +36,13 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
+    public User(UserDTO userDTO) {
+        this.firstName = userDTO.firstName();
+        this.lastName = userDTO.lastName();
+        this.document = userDTO.document();
+        this.mail = userDTO.mail();
+        this.password = userDTO.password();
+        this.balance = userDTO.balance();
+        this.userType = userDTO.userType();
+    }
 }
